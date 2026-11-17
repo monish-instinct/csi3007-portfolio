@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Blue · Project README</title>
+<meta name="description" content="Project documentation for Blue, the CSI3007 Advanced Python Programming course project by Monish Jagatheswaran (23MIC0098).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@1,6..72,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Porcelain 60 / Spruce 30 / Brass 10, matching the portfolio */
+:root{--bg:#EEF1ED;--surface:#F8FAF7;--surface-2:#E3E9E4;--fg:#15241F;--muted:#586761;--line:#D3DBD5;--line-strong:#B9C5BD;
+  --sub:#1D3B34;--on-sub:#F1F4EF;--on-sub-muted:#A9BDB2;--accent:#B8893B;--accent-text:#86611E;--accent-soft:rgba(184,137,59,.11);--head:#1D3B34;
+  --f:"Plus Jakarta Sans","Helvetica Neue",Arial,sans-serif;--serif:"Newsreader",Georgia,serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root{--bg:#0F1513;--surface:#151D1A;--surface-2:#1B2622;--fg:#E5EBE7;--muted:#97A69F;--line:#25322D;--line-strong:#34453F;
+  --sub:#183630;--accent:#CBA35D;--accent-text:#D6B270;--accent-soft:rgba(203,163,93,.11);--head:#E5EBE7;color-scheme:dark}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:15.5px/1.75 var(--f);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:var(--head);text-decoration-color:var(--accent);text-underline-offset:3px}
+a:hover{color:var(--accent-text)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+.wrap{max-width:900px;margin:0 auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+.top{background:var(--sub);color:var(--on-sub)}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;flex-wrap:wrap}
+.top span{font:500 .68rem var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+.top a{color:var(--on-sub);font:600 .86rem var(--f);text-decoration:none;border:1px solid rgba(241,244,239,.18);padding:8px 14px;border-radius:8px}
+.top a:hover{border-color:var(--accent);color:var(--on-sub)}
+main{padding-block:48px 72px}
+h1,h2,h3{color:var(--head);line-height:1.2;letter-spacing:-.02em;text-wrap:balance;font-weight:600}
+h1{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.035em;margin:0 0 6px}
+h2{font-size:1.55rem;margin:64px 0 16px;padding-top:24px;border-top:1px solid var(--line);scroll-margin-top:16px}
+h3{font-size:1.12rem;margin:32px 0 10px}
+p,ul,ol{margin:0 0 14px}
+ul,ol{padding-left:22px}
+li{margin-bottom:5px}
+li::marker{color:var(--accent)}
+strong{color:var(--head);font-weight:600}
+hr{border:0;border-top:1px solid var(--line);margin:32px 0}
+code{font:400 .84em var(--mono);background:var(--surface-2);border:1px solid var(--line);padding:1px 6px;border-radius:5px;color:var(--head)}
+blockquote{margin:16px 0;padding:12px 18px;border-left:2px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--muted)}
+blockquote p{margin:4px 0}
+blockquote em{font-family:var(--serif);font-size:1.05em;color:var(--fg)}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface);margin:0 0 18px}
+table{border-collapse:collapse;width:100%;font-size:.88rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .64rem var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted);background:var(--surface-2);white-space:nowrap}
+th:empty{display:none}
+tr:last-child td{border-bottom:0}
+td code{white-space:nowrap}
+.diag{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#F8FAF7;padding:18px;margin:0 0 18px}
+pre.mermaid{margin:0;text-align:center;font-family:arial,helvetica,sans-serif;font-size:14px;line-height:1.2;min-width:min(620px,100%)}
+pre.mermaid:not([data-processed]){color:transparent;min-height:100px}
+main > p:first-of-type strong{font-family:var(--mono);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-text);font-weight:500}
+footer{background:var(--sub);color:var(--on-sub-muted);font-size:.86rem}
+footer .wrap{padding-block:28px}
+footer a{color:var(--on-sub)}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><span>Project documentation · CSI3007</span><a href="/">← Back to the portfolio</a></div></header>
+<main class="wrap">
+<h1 id="blue-voice-first-training-for-indias-shop-floors">Blue: voice-first training for India's shop floors</h1>
+<p><strong>CSI3007 Advanced Python Programming · Course project and portfolio</strong></p>
+<p>Monish Jagatheswaran · 23MIC0098 · Slot C1 (theory), L31+L32+L49+L50 (lab) · Faculty: Dr. Sharmila Banu K</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Course portfolio (all assessments)</strong></td>
+<td><a href="/">monish-csi3007-portfolio.vercel.app</a></td>
+</tr>
+<tr>
+<td><strong>Project pitch video (2 min 42 s)</strong></td>
+<td><a href="https://drive.google.com/file/d/1vEcCLuXax6FLmlYWpzzKcltcZt0ypgsv/view?usp=sharing" target="_blank" rel="noopener noreferrer">Google Drive</a></td>
+</tr>
+<tr>
+<td><strong>Concept design, Lab Assessment 3</strong></td>
+<td><a href="https://www.figma.com/design/I1qUH2tq89MEr2NVjYf9Ie/Production-Estimator?node-id=0-1&amp;t=V3G35Pd5uCzOK4i7-1" target="_blank" rel="noopener noreferrer">Figma: Production Estimator</a></td>
+</tr>
+<tr>
+<td><strong>Project status</strong></td>
+<td>Live: <code>staging/blue</code> released to production on 15 October 2026</td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>Blue is presented in the product deck under the name <strong>Insyde</strong>: <em>machine training from the inside</em>.</p>
+</blockquote>
+<hr />
+<h2 id="contents">Contents</h2>
+<ol>
+<li><a href="#1-what-blue-does">What Blue does</a></li>
+<li><a href="#2-the-problem">The problem</a></li>
+<li><a href="#3-who-it-is-for">Who it is for</a></li>
+<li><a href="#4-features">Features</a></li>
+<li><a href="#5-hydro-the-voice-tutor">HYDRO, the voice tutor</a></li>
+<li><a href="#6-architecture">Architecture</a></li>
+<li><a href="#7-how-the-main-requests-flow">How the main requests flow</a></li>
+<li><a href="#8-manual-in-lesson-out">Manual in, lesson out</a></li>
+<li><a href="#9-the-python-services">The Python services</a></li>
+<li><a href="#10-frontend">Frontend</a></li>
+<li><a href="#11-hosting-and-environments">Hosting and environments</a></li>
+<li><a href="#12-data-security-and-storage">Data, security and storage</a></li>
+<li><a href="#13-roadmap">Roadmap</a></li>
+<li><a href="#14-pitch-video-storyboard">Pitch video storyboard</a></li>
+<li><a href="#15-changes-since-the-first-project-report">Changes since the first project report</a></li>
+<li><a href="#16-the-rest-of-the-course-portfolio">The rest of the course portfolio</a></li>
+<li><a href="#17-this-website">This website</a></li>
+</ol>
+<hr />
+<h2 id="1-what-blue-does">1. What Blue does</h2>
+<p>Blue is a multilingual training platform for industrial maintenance teams. It turns an employer's own manuals and standard operating procedures into lessons, 3D machine models and <strong>HYDRO</strong>, an AI voice tutor.</p>
+<p>A technician holds one button and asks a question in their own language. HYDRO answers out loud from the company's approved documents and names the document it used. If the documents don't cover the question, it says so and hands off to a supervisor. Managers approve every AI-drafted lesson before anyone is assigned it, and they can see where the skill gaps are.</p>
+<h2 id="2-the-problem">2. The problem</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>21 million</strong></td>
+<td>people work in India's registered factories (Annual Survey of Industries 2024–25)</td>
+</tr>
+<tr>
+<td><strong>4.2%</strong></td>
+<td>of people aged 15–59 have had formal vocational training (Periodic Labour Force Survey 2025)</td>
+</tr>
+</tbody>
+</table></div>
+<ul>
+<li><strong>Manuals nobody reads.</strong> Knowledge sits in English PDFs, CAD files and senior people's heads.</li>
+<li><strong>No one to ask at 2 a.m.</strong> A night-shift operator facing an alarm has no expert beside the machine.</li>
+<li><strong>Completion is not competence.</strong> Clicking through slides counts as training; real skill is never proven.</li>
+</ul>
+<p>What exists today doesn't close the gap. Course sites teach desk skills in English. Corporate learning systems record who clicked through a module, not who can do the job. Specialist hydraulics courses are English-only and generic. General chatbots answer from the internet, not from the plant's own procedures.</p>
+<h2 id="3-who-it-is-for">3. Who it is for</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Job</th>
+<th>What Blue gives them</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Worker</strong></td>
+<td>Learns the job on the machine</td>
+<td>Step-by-step lessons on the 3D twin; asks HYDRO by voice in their language; web or Android app</td>
+</tr>
+<tr>
+<td><strong>Engineer</strong></td>
+<td>Goes deep on the system</td>
+<td>Hydraulics and CNC industry packs; scored simulators and test benches; twin tools (explode, section, hotspots)</td>
+</tr>
+<tr>
+<td><strong>Manager</strong></td>
+<td>Builds and signs off the training</td>
+<td>Turns manuals and CAD into lessons; reviews every AI draft before release; skill matrix and completion certificates</td>
+</tr>
+<tr>
+<td><strong>Admin</strong></td>
+<td>Runs the organisation</td>
+<td>Departments, users and invites, documents, sources and review, settings</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="4-features">4. Features</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>Status</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>HYDRO voice tutor</td>
+<td>Live</td>
+<td>Voice questions answered from approved documents, streamed back as speech. Capped at 200 questions per person per day.</td>
+</tr>
+<tr>
+<td>Ask a doubt</td>
+<td>Live</td>
+<td>Select the part in a photo or video; HYDRO answers on the image, or a supervisor replies.</td>
+</tr>
+<tr>
+<td>Source to lesson</td>
+<td>Live</td>
+<td>PDF, Word, video and CAD files become reviewed, versioned lessons.</td>
+</tr>
+<tr>
+<td>3D machine models</td>
+<td>Live</td>
+<td><code>model-viewer</code> and three.js simulations, loaded only when needed. The hydraulics pack has 15 courses and 25 simulators.</td>
+</tr>
+<tr>
+<td>Certificate check</td>
+<td>Live</td>
+<td>Public <code>/verify/certificate/[id]</code> lookup. A record of completion, not an accredited qualification.</td>
+</tr>
+<tr>
+<td>Android app</td>
+<td>Prototype</td>
+<td>Expo and React Native worker and engineer screens on the same API. Release is on the backlog.</td>
+</tr>
+<tr>
+<td>Web ingestion</td>
+<td>Prototype</td>
+<td>Python worker that turns approved web pages into sources. Declared in <code>render.yaml</code>, not running.</td>
+</tr>
+<tr>
+<td>CAD converter</td>
+<td>Prototype</td>
+<td>Converts very large STEP files to 3D models on AWS ECS Fargate. Described in the product deck.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="5-hydro-the-voice-tutor">5. HYDRO, the voice tutor</h2>
+<p>HYDRO is the project's unique element.</p>
+<div class="diag"><pre class="mermaid">%%{init: {"theme":"base","flowchart":{"htmlLabels":false,"padding":12},"themeVariables":{"fontFamily":"arial, helvetica, sans-serif","fontSize":"14px","primaryColor":"#E3E9E4","primaryBorderColor":"#9FB3A8","primaryTextColor":"#15241F","lineColor":"#8A9A92","edgeLabelBackground":"#EEF1ED","clusterBkg":"transparent","clusterBorder":"#B8893B","titleColor":"#86611E"}}}%%
+flowchart LR
+  A["Technician holds the button&lt;br/&gt;and asks, e.g. in Tamil"] --&gt; B["Saaras&lt;br/&gt;speech-to-text"]
+  B --&gt; C["Search the organisation's&lt;br/&gt;approved documents"]
+  C --&gt; D["sarvam-105b answers,&lt;br/&gt;naming its source"]
+  D --&gt; E{"Grounded&lt;br/&gt;answer?"}
+  E -- yes --&gt; F["bulbul speaks it back"]
+  E -- no --&gt; G["Clear refusal and&lt;br/&gt;hand-off to supervisor"]
+</pre></div>
+<ul>
+<li><strong>Full duplex with barge-in.</strong> It listens while it speaks, so the worker can interrupt.</li>
+<li><strong>Hands-free or push-to-talk.</strong> Gloves on, hands busy: the operator just talks.</li>
+<li><strong>Knows the screen.</strong> It answers about the part or step that is open in front of the worker.</li>
+<li><strong>Fast.</strong> Speech is streamed, so the first word arrives in about a second.</li>
+<li><strong>Languages.</strong> HYDRO and voice cover 26 Indian languages and dialects through Sarvam AI. The interface itself is in English, Hindi and Marathi.</li>
+</ul>
+<p>Example from the pitch video, asked and answered in Tamil:</p>
+<blockquote>
+<p><em>"The relief valve is there, so why does the pressure keep dropping?"</em>
+<em>"If there's a leak inside the pump, the pressure will drop. The relief valve only controls high pressure."</em></p>
+</blockquote>
+<h2 id="6-architecture">6. Architecture</h2>
+<p>One web app on Cloudflare, Supabase for data, Sarvam for every AI call, and small services on Render.</p>
+<div class="diag"><pre class="mermaid">%%{init: {"theme":"base","flowchart":{"htmlLabels":false,"padding":12},"themeVariables":{"fontFamily":"arial, helvetica, sans-serif","fontSize":"14px","primaryColor":"#E3E9E4","primaryBorderColor":"#9FB3A8","primaryTextColor":"#15241F","lineColor":"#8A9A92","edgeLabelBackground":"#EEF1ED","clusterBkg":"transparent","clusterBorder":"#B8893B","titleColor":"#86611E"}}}%%
+flowchart TB
+  P["People&lt;br/&gt;Browser / PWA · Android (Expo)&lt;br/&gt;worker · engineer · manager · admin"]
+  subgraph CF["Cloudflare Workers"]
+    W["Next.js 16 app&lt;br/&gt;82 pages · 102 API routes"]
+  end
+  subgraph SB["Supabase"]
+    DB[("Postgres&lt;br/&gt;row-level security")]
+    ST["Storage&lt;br/&gt;6 private buckets"]
+    PT["pipeline-tick&lt;br/&gt;Edge Function, every minute"]
+  end
+  subgraph RD["Render"]
+    V["lockedin-voice&lt;br/&gt;Node · WebSocket"]
+    DX["lockedin-docextract&lt;br/&gt;Python · FastAPI"]
+    WI["lockedin-webingest&lt;br/&gt;Python worker (not running)"]
+  end
+  S["Sarvam AI&lt;br/&gt;sarvam-105b · bulbul:v3&lt;br/&gt;saaras STT · Vision OCR"]
+  P -- HTTPS --&gt; W
+  P -. voice WebSocket .-&gt; V
+  W -- queries as the signed-in user --&gt; DB
+  W -- AI calls --&gt; S
+  PT -- extract --&gt; DX
+  PT -- lesson drafts --&gt; S
+  V -- speech --&gt; S
+  DX -- OCR --&gt; S
+  WI -. results RPC .-&gt; DB
+</pre></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cloudflare Worker <code>blue</code></strong></td>
+<td>The Next.js app. Serves every page and every API call; auth is checked on every call. Built with OpenNext; a staging copy runs as <code>blue-staging</code>.</td>
+</tr>
+<tr>
+<td><strong>Supabase</strong></td>
+<td>Postgres with row-level security per organisation, Auth (email, phone, Google, invites), 6 private storage buckets, and the <code>pipeline-tick</code> Edge Function that runs the lesson pipeline every minute.</td>
+</tr>
+<tr>
+<td><strong>Sarvam AI</strong></td>
+<td>The only AI provider: <code>sarvam-105b</code> chat (HYDRO, doubts, lesson writing), <code>bulbul:v3</code> text-to-speech, <code>saaras</code> / <code>saarika</code> speech-to-text, Vision OCR and <code>mayura</code> translation.</td>
+</tr>
+<tr>
+<td><strong>Render</strong></td>
+<td><code>lockedin-voice</code> (WebSocket voice tutor), <code>lockedin-docextract</code> (Python document extraction) and <code>lockedin-webingest</code> (declared, not running).</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="7-how-the-main-requests-flow">7. How the main requests flow</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Request</th>
+<th>Path through the system</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Opening a page</strong></td>
+<td>The Worker renders the page; the signed-in session lives in a cookie (<code>@supabase/ssr</code>). The route group checks the role before anything is shown.</td>
+</tr>
+<tr>
+<td><strong>Asking HYDRO</strong></td>
+<td>The browser sends the question with the page's text → <code>/api/engineer/tutor</code> checks the session and the daily limit → searches the organisation's approved documents in Postgres → Sarvam answers, streamed back.</td>
+</tr>
+<tr>
+<td><strong>Ask a doubt</strong></td>
+<td>Photos and videos upload straight to the <code>doubt-media</code> bucket with one-time links → <code>/api/doubts</code> stores the doubt → HYDRO answers on the photo, or a supervisor replies.</td>
+</tr>
+<tr>
+<td><strong>Document → lesson</strong></td>
+<td>An admin uploads a source to <code>lesson-sources</code> → <code>pipeline-tick</code> sends it to docextract → Sarvam drafts the lesson → it waits in the review queue → published and assigned.</td>
+</tr>
+<tr>
+<td><strong>Voice</strong></td>
+<td>The device opens a WebSocket to <code>lockedin-voice</code>, which streams speech-to-text, the reply and text-to-speech through Sarvam.</td>
+</tr>
+<tr>
+<td><strong>Certificate check</strong></td>
+<td><code>/verify/certificate/[id]</code> looks the record up in <code>course_certificates</code>.</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="8-manual-in-lesson-out">8. Manual in, lesson out</h2>
+<div class="diag"><pre class="mermaid">%%{init: {"theme":"base","flowchart":{"htmlLabels":false,"padding":12},"themeVariables":{"fontFamily":"arial, helvetica, sans-serif","fontSize":"14px","primaryColor":"#E3E9E4","primaryBorderColor":"#9FB3A8","primaryTextColor":"#15241F","lineColor":"#8A9A92","edgeLabelBackground":"#EEF1ED","clusterBkg":"transparent","clusterBorder":"#B8893B","titleColor":"#86611E"}}}%%
+flowchart LR
+  A["1 · Upload&lt;br/&gt;PDF, Word, video,&lt;br/&gt;CAD or web page"] --&gt; B["2 · Extract&lt;br/&gt;docextract /&lt;br/&gt;webingest"]
+  B --&gt; C["3 · Simplify&lt;br/&gt;sarvam-105b,&lt;br/&gt;then validated"]
+  C --&gt; D["4 · Review&lt;br/&gt;a person approves"]
+  D --&gt; E["5 · Compose&lt;br/&gt;immutable&lt;br/&gt;lesson versions"]
+  E --&gt; F["6 · Prove&lt;br/&gt;scored benches,&lt;br/&gt;certificates"]
+</pre></div>
+<p>No AI draft reaches a worker until a person approves it, and safety items need an admin. A client's sources never leave their organisation: the API runs as the caller, so row-level security is the gate.</p>
+<h2 id="9-the-python-services">9. The Python services</h2>
+<p>Most of the backend is TypeScript: the 102 API routes, the voice service and the lesson pipeline. Python is used where its libraries are the right tool: reading PDFs, Word and CAD files, OCR, video transcripts, and fetching approved web pages safely. Both services need Python 3.12 and run in Docker on Render, with 15 source files between them.</p>
+<h3 id="docextract-documents-cad-and-video-to-text">docextract: documents, CAD and video to text</h3>
+<p>FastAPI web service · <code>services/docextract/docextract/</code></p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>File</th>
+<th style="text-align: right;">Lines</th>
+<th>Role</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>app.py</code></td>
+<td style="text-align: right;">347</td>
+<td>The Front Desk</td>
+<td>HTTP front for the extractors. Takes a file by sha256, caches results for 24 h, answers polls. Health check at <code>/healthz</code>.</td>
+</tr>
+<tr>
+<td><code>isolate.py</code></td>
+<td style="text-align: right;">165</td>
+<td>The Safe Room</td>
+<td>Runs each extraction in a child process with a time and memory limit, so one bad file cannot take the service down.</td>
+</tr>
+<tr>
+<td><code>pdf.py</code></td>
+<td style="text-align: right;">338</td>
+<td>The Reader</td>
+<td>PDF to page-scoped text blocks and embedded images with PyMuPDF, with OCR for scanned pages.</td>
+</tr>
+<tr>
+<td><code>ocr.py</code></td>
+<td style="text-align: right;">86</td>
+<td>The Eyes</td>
+<td>Tesseract OCR grouped into paragraphs, each with a confidence.</td>
+</tr>
+<tr>
+<td><code>sarvam.py</code></td>
+<td style="text-align: right;">450</td>
+<td>The Interpreter</td>
+<td>Sarvam Vision document-intelligence client with typed errors for auth, rate limits and timeouts.</td>
+</tr>
+<tr>
+<td><code>docx.py</code></td>
+<td style="text-align: right;">466</td>
+<td>The Wordsmith</td>
+<td>Word files to headings, paragraphs and tables. Standard library only.</td>
+</tr>
+<tr>
+<td><code>video.py</code></td>
+<td style="text-align: right;">363</td>
+<td>The Listener</td>
+<td>Video or audio to a timed transcript with ffmpeg and Sarvam speech-to-text.</td>
+</tr>
+<tr>
+<td><code>cad.py</code></td>
+<td style="text-align: right;">800</td>
+<td>The Draughtsman</td>
+<td>CAD files to the text they carry (titles, part lists, notes), never their geometry.</td>
+</tr>
+<tr>
+<td><code>errors.py</code></td>
+<td style="text-align: right;">34</td>
+<td>The Rulebook</td>
+<td>One <code>ExtractError</code> with codes, so the pipeline can tell "retry" from "this file cannot be read".</td>
+</tr>
+<tr>
+<td><code>__init__.py</code></td>
+<td style="text-align: right;">0</td>
+<td>Package marker</td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<p>Needs <code>fastapi</code>, <code>uvicorn</code>, <code>pymupdf</code>, <code>pytesseract</code>, <code>pillow</code>, plus <code>tesseract-ocr</code> with 11 language packs and <code>ffmpeg</code>.</p>
+<div class="diag"><pre class="mermaid">%%{init: {"theme":"base","flowchart":{"htmlLabels":false,"padding":12},"themeVariables":{"fontFamily":"arial, helvetica, sans-serif","fontSize":"14px","primaryColor":"#E3E9E4","primaryBorderColor":"#9FB3A8","primaryTextColor":"#15241F","lineColor":"#8A9A92","edgeLabelBackground":"#EEF1ED","clusterBkg":"transparent","clusterBorder":"#B8893B","titleColor":"#86611E"}}}%%
+flowchart LR
+  N["pipeline worker&lt;br/&gt;PUT file"] --&gt; AP["app.py&lt;br/&gt;sha256, 24 h cache"]
+  AP --&gt; IS["isolate.py&lt;br/&gt;time + memory cap"]
+  IS --&gt; PD["pdf.py"] &amp; DO["docx.py"] &amp; VI["video.py"] &amp; CA["cad.py"]
+  PD --&gt; OC["ocr.py · Tesseract"] &amp; SV["sarvam.py · Vision"]
+  DO &amp; VI &amp; CA &amp; OC &amp; SV --&gt; J["result JSON&lt;br/&gt;(GET polls)"]
+</pre></div>
+<h3 id="webingest-approved-web-pages-to-source-documents">webingest: approved web pages to source documents</h3>
+<p>Background worker · <code>services/webingest/webingest/</code> · <strong>Prototype</strong> (declared, not running)</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>File</th>
+<th style="text-align: right;">Lines</th>
+<th>Role</th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>worker.py</code></td>
+<td style="text-align: right;">273</td>
+<td>The Dispatcher</td>
+<td>Claims queued fetch requests from Postgres, rate-limits each host, retries up to 2 times, hands results back by RPC.</td>
+</tr>
+<tr>
+<td><code>netguard.py</code></td>
+<td style="text-align: right;">392</td>
+<td>The Bodyguard</td>
+<td>SSRF-safe fetching: its own DNS lookup, blocked private IP ranges, IP pinning, manual redirects, size and time caps.</td>
+</tr>
+<tr>
+<td><code>policy.py</code></td>
+<td style="text-align: right;">261</td>
+<td>The Gatekeeper</td>
+<td>URL canonicalisation, per-organisation allow rules and robots.txt.</td>
+</tr>
+<tr>
+<td><code>extract.py</code></td>
+<td style="text-align: right;">273</td>
+<td>The Editor</td>
+<td>HTML to title, canonical link and clean text with Scrapling's parser; drops hidden text and flags prompt injection.</td>
+</tr>
+<tr>
+<td><code>__init__.py</code></td>
+<td style="text-align: right;">3</td>
+<td>The Name Tag</td>
+<td>Package description and version.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Needs <code>scrapling</code> 0.4.15 (parser only) and <code>httpx</code> 0.28.1. Every result is saved with full provenance (URL, robots result, parser version, licence basis), or with a "denied" or "failed" reason.</p>
+<h3 id="cad-converter-from-the-product-deck">cad-converter (from the product deck)</h3>
+<p><strong>Prototype.</strong> <code>handler.py</code> (The Heavy Lifter) uses OpenCascade to read, mesh and cap the triangles of STEP files too big for the ~2 GB WebAssembly limit. It runs on AWS ECS Fargate, reading from and writing to S3, and returns <code>{ ok, triangles, seconds, maxRssMb }</code>. It was built for a 260 MB Inventor export of a CNC mill.</p>
+<h3 id="running-and-testing-locally">Running and testing locally</h3>
+<p>From each service folder: <code>uv sync &amp;&amp; uv run docextract</code> (or <code>uv run webingest</code>). Tests run with <code>uv run pytest</code>: 10 test files for docextract and 7 for webingest. Production images are built from <code>services/&lt;name&gt;/Dockerfile</code>.</p>
+<h2 id="10-frontend">10. Frontend</h2>
+<p>One Next.js app with four role portals, built for low-end Android phones on weak networks. Worker screens read like a consumer app (one main action, big tap targets); manager and admin screens are denser. It installs as a PWA, and an Expo Android app shares the same backend.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Layer</th>
+<th>Choice</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Framework</td>
+<td>Next.js 16.3 (App Router), React 19.2, TypeScript</td>
+</tr>
+<tr>
+<td>Styling</td>
+<td>Tailwind CSS 4, shadcn/ui (Base UI), one white / ink / blue design system</td>
+</tr>
+<tr>
+<td>Data and sign-in</td>
+<td>Supabase JS 2 with <code>@supabase/ssr</code>; Zod 4 validates every request</td>
+</tr>
+<tr>
+<td>3D and maths</td>
+<td><code>@google/model-viewer</code> 4, three.js 0.183 (loaded only when needed), KaTeX</td>
+</tr>
+<tr>
+<td>Motion, icons, fonts</td>
+<td>Framer Motion, Lucide icons, self-hosted Geist Sans and Mono, Inter and two serif display faces</td>
+</tr>
+<tr>
+<td>Mobile</td>
+<td>Expo 57, React Native 0.86, Expo Router</td>
+</tr>
+<tr>
+<td>Deploy</td>
+<td>OpenNext and Wrangler to Cloudflare Workers</td>
+</tr>
+</tbody>
+</table></div>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Portal</th>
+<th>Who</th>
+<th style="text-align: right;">Pages</th>
+<th>Main screens</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>(worker)</code></td>
+<td>Workers (managers and admins can look in)</td>
+<td style="text-align: right;">23</td>
+<td>Home, assigned lessons, my learning, library, lessons, assessments, Ask a doubt, progress, profile</td>
+</tr>
+<tr>
+<td><code>(engineer)</code></td>
+<td>Engineers, managers, admins</td>
+<td style="text-align: right;">21</td>
+<td>Curriculum and labs, catalogue, 3D models, HYDRO tutor, Ask a doubt, progress</td>
+</tr>
+<tr>
+<td><code>(manager)</code></td>
+<td>Managers, admins</td>
+<td style="text-align: right;">13</td>
+<td>Team dashboard, workers and invites, learning paths, review, doubt inbox, knowledge base, skills</td>
+</tr>
+<tr>
+<td><code>(admin)</code></td>
+<td>Admins</td>
+<td style="text-align: right;">13</td>
+<td>Overview, departments, users and invites, documents, sources and review, lessons, industry setup, settings</td>
+</tr>
+<tr>
+<td><code>(auth)</code>, lander, verify</td>
+<td>Anyone</td>
+<td style="text-align: right;">5</td>
+<td>Sign-in, invite, public landing page, certificate check</td>
+</tr>
+</tbody>
+</table></div>
+<p>There is no public sign-up: people join through an employer's invite.</p>
+<h2 id="11-hosting-and-environments">11. Hosting and environments</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Where</th>
+<th>Details</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Web app and API</td>
+<td>Cloudflare Workers</td>
+<td>Worker <code>blue</code> (production) and <code>blue-staging</code>, built with OpenNext and deployed from GitHub. Static assets, including the bundled 3D models, are served from Cloudflare.</td>
+</tr>
+<tr>
+<td>Database, sign-in, files</td>
+<td>Supabase (managed Postgres)</td>
+<td>Row-level security, Auth, 6 private storage buckets, the <code>pipeline-tick</code> Edge Function on <code>pg_cron</code>. Migrations apply automatically when <code>master</code> changes.</td>
+</tr>
+<tr>
+<td>Voice service</td>
+<td>Render (Oregon)</td>
+<td><code>lockedin-voice</code>, Node, from <code>services/voice/Dockerfile</code></td>
+</tr>
+<tr>
+<td>Document extraction</td>
+<td>Render (Oregon)</td>
+<td><code>lockedin-docextract</code>, Python, from <code>services/docextract/Dockerfile</code>; deploys only after CI passes</td>
+</tr>
+<tr>
+<td>Web ingestion</td>
+<td>Render (declared)</td>
+<td><code>lockedin-webingest</code> background worker; in <code>render.yaml</code>, not running</td>
+</tr>
+<tr>
+<td>AI</td>
+<td>Sarvam AI (India)</td>
+<td>Chat, speech-to-text, text-to-speech, vision OCR and translation. Keys stay on the servers.</td>
+</tr>
+<tr>
+<td>CI</td>
+<td>GitHub Actions</td>
+<td>Types, lint and tests for the web app; database tests; each service's tests; deploy-config and content-provenance checks on every pull request</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="12-data-security-and-storage">12. Data, security and storage</h2>
+<ul>
+<li><strong>Row-level security.</strong> Every table is scoped to an organisation in Postgres itself, with four roles: worker, engineer, manager, admin.</li>
+<li><strong>Server-verified completion.</strong> Course completion is checked on the server, never trusted from the browser.</li>
+<li><strong>Usage limits.</strong> AI use is capped per person per day in Postgres (HYDRO: 200 questions).</li>
+<li><strong>SSRF-safe web fetching.</strong> <code>netguard.py</code> vets and pins every IP; private networks are unreachable.</li>
+<li><strong>Isolated extraction.</strong> A hostile PDF runs in a child process with time and memory limits.</li>
+<li><strong>Humans approve AI.</strong> No AI draft reaches a worker until a person reviews it.</li>
+<li><strong>Immutable records.</strong> Published lessons and audit events cannot be edited after the fact.</li>
+</ul>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Storage bucket (all private)</th>
+<th>Holds</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lesson-sources</code>, <code>lesson-assets</code></td>
+<td>Documents and lesson media</td>
+</tr>
+<tr>
+<td><code>doubt-media</code></td>
+<td>Ask a doubt photos and videos</td>
+</tr>
+<tr>
+<td><code>machine-assets</code>, <code>machine-videos</code></td>
+<td>3D models and videos</td>
+</tr>
+<tr>
+<td><code>legacy-content</code></td>
+<td>Licensed reference content, gated by a flag</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="13-roadmap">13. Roadmap</h2>
+<p>Only <strong>Done</strong> is shipped. Everything under Now, Next and Later is proposed.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Done (by 15 Oct 2026)</th>
+<th>Now (proposed)</th>
+<th>Next (proposed)</th>
+<th>Later (proposed)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>staging/blue</code> released to production</td>
+<td>Fix HYDRO "unavailable" in production</td>
+<td>Page reading and calculators for the voice tutor</td>
+<td>Translate the interface beyond English, Hindi and Marathi</td>
+</tr>
+<tr>
+<td>Ask a doubt with part selection on the photo</td>
+<td>Confirm the release migrations in Supabase</td>
+<td>HYDRO that sees photos (vision access pending)</td>
+<td>Remove the old AWS SQS code</td>
+</tr>
+<tr>
+<td>3D models page redesign</td>
+<td>Run the acceptance test: upload → lesson → approve → assign → learner</td>
+<td>Machine operation training with a CAD twin and 3D instructor</td>
+<td>Upgrade the Supabase plan</td>
+</tr>
+<tr>
+<td>Security audit fixes: RLS hardening, server-verified completion</td>
+<td>HYDRO answers that read the page, with calculators</td>
+<td>Run the web-ingestion worker in production</td>
+<td>One 3D viewer instead of several</td>
+</tr>
+<tr>
+<td>Licensed content moved to a private bucket</td>
+<td>Test the Ask a doubt camera on a real phone</td>
+<td>End-to-end browser tests</td>
+<td>Android app release</td>
+</tr>
+<tr>
+<td>Login bundle cut from 313 KB to 256 KB</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="14-pitch-video-storyboard">14. Pitch video storyboard</h2>
+<p><a href="https://drive.google.com/file/d/1vEcCLuXax6FLmlYWpzzKcltcZt0ypgsv/view?usp=sharing" target="_blank" rel="noopener noreferrer">Watch the video</a>: MP4, 1080p, 2:42, narrated in English with a Tamil demo and captions burned in. Roughly 60% business and 40% technology.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Time</th>
+<th>Beat</th>
+<th>Focus</th>
+<th>Summary</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0:02</td>
+<td>The story</td>
+<td>Business</td>
+<td>2 a.m. at a steel plant near Chennai. A hydraulic press stops; Ravi has a 300-page English manual and nobody to ask.</td>
+</tr>
+<tr>
+<td>0:21</td>
+<td>The problem</td>
+<td>Business</td>
+<td>About 21 million factory workers; 4.2% with formal vocational training. Plants measure attendance, not skill.</td>
+</tr>
+<tr>
+<td>0:35</td>
+<td>What exists today</td>
+<td>Business</td>
+<td>Course sites, corporate learning systems, specialist courses and chatbots each miss the shop floor.</td>
+</tr>
+<tr>
+<td>0:56</td>
+<td>Input and output</td>
+<td>Tech</td>
+<td>In: the employer's manuals and a spoken question. Out: a cited spoken answer or a hand-off, plus approved lessons and tests.</td>
+</tr>
+<tr>
+<td>1:17</td>
+<td>How we improved</td>
+<td>Business</td>
+<td>Voice first, grounded in company procedures, competency over completion, one-tap refreshers for managers.</td>
+</tr>
+<tr>
+<td>1:34</td>
+<td>One unique element</td>
+<td>Tech</td>
+<td>HYDRO, the voice tutor.</td>
+</tr>
+<tr>
+<td>1:44</td>
+<td>HYDRO, in Tamil</td>
+<td>Tech</td>
+<td>A real question and answer about a relief valve and a pump leak.</td>
+</tr>
+<tr>
+<td>1:57</td>
+<td>How the voice works</td>
+<td>Tech</td>
+<td>Saaras transcribes, sarvam-105b answers, bulbul speaks, streamed. Next.js on Cloudflare, Supabase with RLS.</td>
+</tr>
+<tr>
+<td>2:17</td>
+<td>Business thesis</td>
+<td>Business</td>
+<td>Per-technician subscription, starting with maintenance, then six trades.</td>
+</tr>
+</tbody>
+</table></div>
+<p>Narration is Sarvam <code>bulbul:v3</code>. The Tamil answer is real output of <code>sarvam-105b-conversations</code>, generated for the video.</p>
+<h2 id="15-changes-since-the-first-project-report">15. Changes since the first project report</h2>
+<p>The codebase guide (15 October 2026) updates Project Report I:</p>
+<ul>
+<li>The web app moved from Render to Cloudflare Workers.</li>
+<li>The Machine Twin service and the Tripo 3D generator were removed.</li>
+<li>Document processing runs on Supabase's scheduled function and the Render extraction service, not AWS SQS.</li>
+<li>There are no real-time database subscriptions.</li>
+<li>Certificates are records of completion, not accredited qualifications.</li>
+</ul>
+<p>This README follows the codebase guide.</p>
+<h2 id="16-the-rest-of-the-course-portfolio">16. The rest of the course portfolio</h2>
+<p>Everything below is presented in full on the <a href="https://monish-csi3007-portfolio.vercel.app" target="_blank" rel="noopener noreferrer">portfolio site</a>.</p>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Ref</th>
+<th>Submission</th>
+<th>Topic</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CS 1</td>
+<td>Case study: A Thorough Treatise on Tkinter</td>
+<td>Python's standard GUI toolkit: history, architecture, ten widgets, comparison with PyQt, wxPython and Kivy</td>
+</tr>
+<tr>
+<td>LA 01</td>
+<td>Reading files of every kind</td>
+<td>pypdf, csv, librosa waveform and spectrogram, a robots.txt-aware scraper</td>
+</tr>
+<tr>
+<td>LA 02</td>
+<td>Four hard problems</td>
+<td>LeetCode #123, #472, #336, #32</td>
+</tr>
+<tr>
+<td>LA 03</td>
+<td>Concept design (team)</td>
+<td>Figma Scene Breakdown page for a production estimator</td>
+</tr>
+<tr>
+<td>LA 04</td>
+<td>Threads and pools</td>
+<td><code>threading</code>, <code>ThreadPoolExecutor</code>, timed downloads, a Thread subclass</td>
+</tr>
+<tr>
+<td>LA 05</td>
+<td>CSV, JSON and pandas</td>
+<td>Student records through csv, DictWriter, json and DataFrames</td>
+</tr>
+<tr>
+<td>LA 06</td>
+<td>pandas Series practice</td>
+<td>Series, element-wise operations, MultiIndex</td>
+</tr>
+<tr>
+<td>LA 07</td>
+<td>Pivot tables on city GVI</td>
+<td>Mean, min, sum and count pivots</td>
+</tr>
+<tr>
+<td>LA 08</td>
+<td>Project Report I</td>
+<td>Blue: features, screenshots, backend, hosting</td>
+</tr>
+<tr>
+<td>LA 09</td>
+<td>Project Report II</td>
+<td>Pitch video, architecture, roadmap, codebase guide</td>
+</tr>
+<tr>
+<td>LA 10</td>
+<td>Loan eligibility model</td>
+<td>Random Forest with GridSearchCV: 78.05% test accuracy as reported in the notebook</td>
+</tr>
+<tr>
+<td>QS</td>
+<td>OOP question sets</td>
+<td>Six LeetCode problems rewritten as class-design questions</td>
+</tr>
+<tr>
+<td>Deck</td>
+<td>Product presentation</td>
+<td>17 slides on Insyde (Blue)</td>
+</tr>
+</tbody>
+</table></div>
+<h2 id="17-this-website">17. This website</h2>
+<div class="tbl"><table>
+<thead>
+<tr>
+<th>Page</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="/">Portfolio</a></td>
+<td>Every assessment for the course on one page, with all images embedded</td>
+</tr>
+<tr>
+<td><a href="/readme">Project README</a></td>
+<td>This document</td>
+</tr>
+</tbody>
+</table></div>
+<p>Both pages are hosted on Vercel at <a href="/">monish-csi3007-portfolio.vercel.app</a>.</p>
+</main>
+<footer><div class="wrap">Monish Jagatheswaran · 23MIC0098 · CSI3007 Advanced Python Programming · <a href="/">Course portfolio</a></div></footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.1/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,securityLevel:'strict'});</script>
+</body>
+</html>
